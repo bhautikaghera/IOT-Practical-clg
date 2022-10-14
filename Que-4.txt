@@ -1,0 +1,16 @@
+
+#define BUZZER 7
+
+void setup() {
+  
+  pinMode(BUZZER, OUTPUT);
+
+}
+
+
+void loop() {
+  tone(BUZZER, 1000); 
+  delay(1000);        
+  noTone(BUZZER);    
+  delay(1000);
+}

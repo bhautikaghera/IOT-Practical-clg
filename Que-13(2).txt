@@ -1,0 +1,31 @@
+int IRSensor = 8;
+int LED=13;
+int LED1=10;
+int BUZZER=11;
+
+void setup() 
+{
+  pinMode (IRSensor,INPUT); 
+  pinMode (LED, OUTPUT);
+  pinMode (LED1, OUTPUT);
+  pinMode (BUZZER, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int statusSensor = digitalRead(IRSensor);
+  Serial.println(statusSensor);
+  if(statusSensor==1)  {
+    digitalWrite(LED,HIGH);
+    digitalWrite(LED1,HIGH);
+    digitalWrite(LED1,LOW);
+    noTone(BUZZER);
+  }
+  else{
+    digitalWrite(LED1,HIGH);
+    digitalWrite(LED,HIGH);
+    digitalWrite(LED,LOW);
+    tone(BUZZER,1000);
+  }
+}

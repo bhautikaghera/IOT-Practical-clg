@@ -1,0 +1,64 @@
+#include "DHT.h"
+
+#define dhtpin 7
+#define DHTTYPE DHT11
+int f=0;
+DHT dht(dhtpin,DHTTYPE);
+void setup()
+{
+  Serial.begin(9600);
+  dht.begin();
+  primeTemperature();
+  avgHumidity();
+}
+void loop()
+{
+  
+  }
+  void primeTemperature()
+  {
+    delay(2000);
+  float humi=dht.readHumidity();
+  
+  float tempC=dht.readTemperature();
+  float tempF=dht.readTemperature(true);
+  if(isnan(humi)||isnan(tempC)||isnan(tempF)){
+    Serial.println("Failed to read from DHT sensor");
+  }else
+  {
+    int sum=0;
+    for(int i=0;i<3;i++)
+    {
+       float tempC=dht.readTemperature();
+       sum+=(int)tempC;
+       
+    }
+    Serial.print(sum);
+    for(int i=2;i<sum/2;i++)
+    {
+      if(sum%2==0)
+            f=0;   
+        else
+           f=1;
+    }
+  }
+  if(f==1)
+  Serial.println("Not Prime");
+  else
+  Serial.println("Prime");
+ }
+
+  void avgHumidity()
+  {
+    int sum=0;
+    float avg=0.0;
+    for(int i=0;i<10;i++)
+    {
+      float humi=dht.readHumidity();
+      sum+=(int)humi; 
+    }
+    avg=sum/10;
+    Serial.println("Average of Humidity: ");
+    Serial.print(avg);
+  }
+  

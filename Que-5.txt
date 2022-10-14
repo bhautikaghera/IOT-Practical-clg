@@ -1,0 +1,46 @@
+
+#define BUZZER 9
+#define LED_BUILTIN 11
+#define LED_BUILTIN1 5
+
+void setup() {
+  
+  pinMode(BUZZER, OUTPUT);
+ pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_BUILTIN1, OUTPUT);
+
+}
+
+
+void loop() {
+  int i;
+
+      
+      for(i=700;i<800;i++){
+        tone(BUZZER,i);
+         delay(15);
+          digitalWrite(LED_BUILTIN, HIGH);
+          delay(100); 
+          digitalWrite(LED_BUILTIN, LOW);
+          delay(100); 
+          digitalWrite(LED_BUILTIN1, HIGH);
+          delay(100);
+          digitalWrite(LED_BUILTIN1, LOW);
+          delay(100);
+       
+      }
+      for(i=800;i>700;i--){
+        tone(BUZZER,i);
+        delay(15);
+       digitalWrite(LED_BUILTIN, HIGH);
+          delay(100); 
+          digitalWrite(LED_BUILTIN, LOW);
+          delay(100); 
+          digitalWrite(LED_BUILTIN1, HIGH);
+          delay(100);
+          digitalWrite(LED_BUILTIN1, LOW);
+          delay(100);
+      }
+
+
+}

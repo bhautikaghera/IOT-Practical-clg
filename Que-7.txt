@@ -1,0 +1,20 @@
+#define PULLUP 3
+#define LED 8
+void setup() {
+  Serial.begin(9600);
+  pinMode(PULLUP,INPUT_PULLUP);
+  pinMode(LED,OUTPUT);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Serial.println(digitalRead(PULLUP));
+  if(digitalRead(PULLUP)==LOW){
+    digitalWrite(LED,HIGH);
+  }
+  else{
+    digitalWrite(LED,LOW);
+  }
+
+}
